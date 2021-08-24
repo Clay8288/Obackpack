@@ -1,0 +1,34 @@
+{% extends "base.html.twig" %}
+
+{% block subtitle %}
+	Matériel
+{% endblock %}
+
+{% block content %}
+	<div class="title">
+		<h2>{{name}} - Matériel</h2>
+	</div>
+
+	<div class="links">
+		<p class="link-post">
+			<a href="{{ path('location_country_administratif', {name:name}) }}#administratif">Administratif</a>
+		</p>
+		<p class="link-post">
+			<a href="{{ path('location_country_weather', {name}) }}">Météo</a>
+		</p>
+		<p class="link-post">
+			<a href="{{ path('location_continent', {name:name}) }}">Retour {{name}}</a>
+		</p>
+	</div>
+    
+	<div class="stuffs-list">
+		<h3>Matériel nécessaire : </h3>
+			<ul>
+				<li>Tente</li>
+				<li>Parapluie</li>
+				<li>Lampe torche</li>
+				<li>Batterie de secours pour téléphone portable</li>
+			</ul>
+	</div>
+
+{% endblock %}

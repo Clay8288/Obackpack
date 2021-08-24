@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}
+	Pays
+{% endblock %}
+
+{% block content %}
+
+	<div class="imageandtitle">
+		<img src="{{ picture.results.3.urls.raw }}&w=1600&dpr=2" alt="image monde" class="continentspec">
+		<h2>{{name}}</h2>
+	</div>
+	<p class="return">
+		<a href="{{ path('location_continent')}}">Retour à la liste des continents</a>
+	</p>
+	<section class="country_details">
+		<div class="administratif_presentation continent">
+			<a href="{{ path('location_country_administratif', {name}) }}#administratif">Administratif</a>
+		</div>
+		<div class="meteo continent">
+			<a href="{{ path('location_country_weather', {name}) }}">Météo</a>
+		</div>
+		<div class="events continent">
+			<a href="{{ path('location_country_administratif', {name:name}) }}#evenements">Evènements</a>
+		</div>
+		<div class="materiel continent">
+			<a href="{{ path('location_country_stuff', {name:name}) }}">Matériel</a>
+		</div>
+	</section>
+
+{% endblock %}

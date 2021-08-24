@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}Les Supers Nanas  {% endblock %}
+
+{% block content %}
+    <div class="title">
+        <div class="imageandtitle-error">
+            <h2>{{title}}</h2>
+        </div>
+    </div>    
+
+    <div class="error-page">
+        <p>
+           Vous vous êtes trompés de route...
+        </p>
+            <img src="{{ asset('img/error.jpg')}}" alt="error">
+        <p>
+            Les supers nanas vous proposent de retourner à  <a href="{{path('main_home')}}">l'accueil</a>
+        </p>
+    </div>
+
+{% endblock %}

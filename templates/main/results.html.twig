@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}
+	Résultats
+{% endblock %}
+
+{% block content %}
+
+	<section class="results">
+		<h3>Résultats de la recherche:</h3>
+			{#{searchValue}#}
+
+	{% if searchValue == not postscontent and searchValue == not posts %}
+		<p> Nous n'avons pas compris votre requête, veuillez réiterer. </p>	
+	{% endif %}
+
+		<ul>
+			{% for post in posts %}
+				<li>
+					 <a href="{{ path('blog_post', {id:post.id}) }}">Titre de l'article :{{post.title}}</a>
+				</li>
+			{% endfor %}
+			
+			{% for postcontent in postscontent %}
+				<li>
+					 <a href="{{ path('blog_post', {id:postcontent.id}) }}">Titre :{{postcontent.title}} Contenu:{{postcontent.content}}</a>
+				</li>
+			{% endfor %}
+		</ul>
+		
+		<p class="return">	
+			<a href="{{ path('main_search') }}">Retour à la recherche</a>
+		</p>
+{% endblock %}

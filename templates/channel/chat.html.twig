@@ -1,0 +1,150 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chat{% endblock %}
+
+{% block content %}
+
+<div class="title">
+        <h2 class="chat-title">Chat {{ channel.name }}</h2>
+</div>
+
+<p class="return">
+		<a href="{{ path('channel')}}">Retour aux channels</a>
+	</p>
+
+<div class="container">
+    {% if app.user %}
+        <div class="info-log">
+            <img src="{{ asset('img/icon/chat.png') }}" alt="" class="chat-icon">
+            <p>Vous êtes connecté en tant que <strong>{{ app.user.nickname }}</strong>, <a href="{{ path('app_logout') }}" class="chat-logout">Logout</a></p>
+        </div>
+    {% endif %}
+
+    <div class="list-user">
+        <div class="user-connected">
+            <img src="{{ asset('img/'~ app.user.picture) }}" altr="">
+            <p>{{ app.user.nickname }}</p>
+        </div>
+    </div>
+    <div class="chat-container">
+        <div class="chat">
+            {% for message in messages %}
+                {% if app.user == message.user %}
+                    <div class="my-message">
+                    <img src="{{asset('img/'~message.user.picture)}}" alt="" class="user-profil">
+                        <div class="chat-message">
+                        <p class="my-info"><strong>{{ message.user.nickname }}</strong> a répondu le {{message.createdAt|format_datetime(locale='fr')}}</p>
+                        <p class="info-my-message">
+                            {{ message.content }}
+                        </p>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="user-message">
+                        <img src="{{asset('img/'~message.user.picture)}}" alt="" class="user-profil">
+                        <div class="chat-message">
+                        <p class="info-user"><strong>{{ message.user.nickname}}</strong> a envoyé un message le {{message.createdAt|format_datetime(locale='fr')}}</p>
+                        <p class="info-user-message">
+                            {{ message.content }}
+                        </p>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="send-message">
+            <form id="form" class="message-input"> 
+                <input id="message" class="message-chat" placeholder="Message" type="text" />
+                <button id="submit" type="submit" class="btn-chat">Envoyer</button>
+            </form>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}
+
+{% block javascripts_footer %}
+
+
+<script>
+// The subscriber subscribes to updates for the https://example.com/users/dunglas topic
+// and to any topic matching https://example.com/books/{id}
+const url = new URL('http://ec2-3-237-178-199.compute-1.amazonaws.com:3000/.well-known/mercure');
+url.searchParams.append('topic', 'http://localhost/chat/{{channel.id}}');
+url.searchParams.append('topic', 'http://ec2-3-237-178-199.compute-1.amazonaws.com/chat/{{channel.id}}');
+url.searchParams.append('topic', 'http://localhost/chat/*');
+url.searchParams.append('topic', 'http://ec2-3-237-178-199.compute-1.amazonaws.com/chat/*');
+// The URL class is a convenient way to generate URLs such as https://localhost/.well-known/mercure?topic=https://example.com/books/{id}&topic=https://example.com/users/dunglas
+
+const eventSource = new EventSource(url, {
+    headers: {
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXJjdXJlIjp7InB1Ymxpc2giOlsiKiJdLCJzdWJzY3JpYmUiOlsiKiJdfX0.4DUMumRBcwown63lKUecQcFxGAr8Dg2vwpSuKfAoKcs',
+    }
+});
+const message = document.getElementById('message');
+
+const form = document.getElementById('form');
+      
+        form.addEventListener('submit', handleForm);
+        function handleForm(e) {
+            e.preventDefault(); // Empêche la page de se rafraîchir après le submit du formulaire
+        }
+        
+        const submit = document.querySelector('#submit');
+        submit.onclick = e => { // On change le comportement du submit
+             // Récupération du message dans l'input correspondant
+            const data = { // La variable data sera envoyée au controller
+                'content': message.value, // On transmet le message...
+                'channel': {{ channel.id }} // ... Et le canal correspondant
+            }
+            
+           // console.log(data); // Pour vérifier vos informations
+
+            console.log(data); // Pour vérifier vos informations
+   
+           // console.log(data); // Pour vérifier vos informations
+
+            fetch('/chat/{{ channel.id }}', { // On envoie avec un post nos datas 
+                method: 'POST',
+                body: JSON.stringify(data) // On envoie les data sous format JSON
+            }).then((response) => {
+               //console.log(data);
+                console.log("reponse du fetch",response);
+                message.value = '';
+            });
+             
+        }
+const appUser = {{ app.user.id }};
+
+
+eventSource.onmessage = ({data}) => { // On écoute les événements publiés par le Hub
+ console.log("onmessage",data)
+    const imageDirectory = {{ asset('img/') }}
+    const message = JSON.parse(data); // Le contenu des événements est sous format JSON, il faut le parser
+    const options = {year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit'};
+    document.querySelector('.chat').insertAdjacentHTML( // On injecte le nouveau message selon le HTML déjà présent plus haut dans notre fichier Twig
+        'beforeend',
+            appUser === message.user.id ?
+            `<div class="my-message">
+                    <img src="${imageDirectory + message.user.picture}" alt="" class="user-profil">
+                        <div class="chat-message">
+                        <p class="my-info"><strong>${ message.user.nickname }</strong> a répondu le ${new Date(message.createdAt).toLocaleDateString('fr-FR', options)}</p>
+                        <p class="info-my-message">${ message.content }</p>
+                        </div>` :
+            `<div class="user-message">
+                        <img src="${imageDirectory + message.user.picture}" alt="" class="user-profil">
+                        <div class="chat-message">
+                        <p class="info-user"><strong>${ message.user.nickname}</strong> a envoyé un message le ${new Date(message.createdAt).toLocaleDateString('fr-FR', options)}</p>
+                        <p class="info-user-message">${ message.content }</p>
+                        </div>`
+    )
+}
+ window.addEventListener('beforeunload', function(){
+        if(eventSource != null){
+            eventSource.close()
+        }
+    })
+
+</script>
+
+{% endblock %}

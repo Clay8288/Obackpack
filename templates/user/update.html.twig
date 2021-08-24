@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}Modifiez vos informations{% endblock %}
+
+{% block content %}
+   
+    <div class="title">
+        <h2>Modifiez vos données</h2>
+    </div>
+    <p class="return">
+		<a href="{{ path('user_profile', {id:user.id}) }}">Retour</a>
+	</p>
+    <div class="formwrapper">
+
+        {{ form_start(form) }}
+            
+            <div class="col">
+                <div class="formgroup">{{ form_row(form.firstname, {
+                label: 'Prénom'
+            }) }}</div>
+            </div>
+            <div class="col">
+                <div class="formgroup">{{ form_row(form.lastname, {
+                label: 'Nom'
+            }) }}</div>
+            </div>
+            <div class="col">
+                <div class="formgroup">{{ form_row(form.email, {
+                label: 'E-mail'
+            }) }}</div>
+            </div>
+            <div class="col">
+                <div class="formgroup">{{ form_row(form.nickname, {
+                label: 'Pseudo'
+            }) }}</div>
+            </div>
+            <div class="col">
+                <div class="formgroup">{{ form_row(form.upload, {
+                label: 'Avatar'
+            }) }}</div>
+            </div>
+            <div class="col">
+                <div class="formgroup">{{ form_row(form.country, {
+                label: 'Pays'
+            }) }}</div>
+            </div>
+            <div class="col">
+                <div class="formgroup">{{ form_row(form.dateOfBirth, {
+                label: 'Date de naissance'
+            }) }}</div>
+            </div>
+
+            <button type="submit" class="buttonform">Modifier</button>
+    
+        {{ form_end(form) }}
+
+    </div>
+
+{% endblock %}

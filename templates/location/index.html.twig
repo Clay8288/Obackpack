@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %} - Zones géographiques  {% endblock %}
+
+{% block content %}
+
+    <div class="imageandtitle">
+        <p class="continentall"></p>
+        <h2>Continents</h2>
+    </div>
+ 
+    <ul class="continentulli">
+        {% for continent in locationContinent %}
+            <li class="continentli"><a href="{{ path('location_detail', {id:continent.id}) }}">{{ continent.name}}</a></li>
+        {% endfor %}
+    </ul>
+
+<div class="pic-ctn">
+    <img src="{{ asset('img/iconMonde/amsterdam.png') }}" alt="" class="pic">
+    <img src="{{ asset('img/iconMonde/china.png') }}" alt="" class="pic">
+    <img src="{{ asset('img/iconMonde/japan.png') }}" alt="" class="pic">
+    <img src="{{ asset('img/iconMonde/london.png') }}" alt="" class="pic">
+    <img src="{{ asset('img/iconMonde/new-york.png') }}" alt="" class="pic">
+    <img src="{{ asset('img/iconMonde/paris.png') }}" alt="" class="pic">
+    <img src="{{ asset('img/iconMonde/roma.png') }}" alt="" class="pic">
+  </div>
+
+	
+{% endblock %}

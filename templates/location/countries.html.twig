@@ -1,0 +1,52 @@
+
+{% extends 'base.html.twig' %}
+
+	{% block stylesheets_continent %}
+
+	{% if name == "africa" %}
+			{{ parent() }}
+				<link rel="stylesheet" href="{{ asset('css/africa.css')}}">
+		
+	{% elseif name == "europe" %}
+			{{ parent() }}
+				<link rel="stylesheet" href="{{ asset('css/europe.css')}}">
+
+	{% elseif name == "asia" %}
+			{{ parent() }}
+				<link rel="stylesheet" href="{{ asset('css/asia.css')}}">
+
+	{% elseif name == "oceania" %}
+			{{ parent() }}
+				<link rel="stylesheet" href="{{ asset('css/oceania.css')}}">
+
+	{% elseif name == "americas" %}
+			{{ parent() }}
+				<link rel="stylesheet" href="{{ asset('css/americas.css')}}">
+
+	{% endif %}
+
+	{% endblock %}
+
+
+{% block subtitle %}
+	Pays
+{% endblock %}
+
+{% block content %}
+
+	<div class="imageandtitle">
+		<p class="continentspec"></p>
+		<h2> {{continent.name}}</h2>
+
+	</div>
+	<p class="return">
+        <a href="{{ path('location_continent') }}">Retour à la liste des continents</a>
+    </p>
+	<ul class="continentul">
+		{%  for data in datas %}
+			<li class="continentli">
+				<a href="{{ path('location_country_administratif', {name:data.name}) }}">{{data.name}}</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

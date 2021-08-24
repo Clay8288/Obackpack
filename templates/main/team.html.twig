@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %} - Les Supers Nanas  {% endblock %}
+
+{% block content %}
+    <div class="title">
+        <h2 class="team-title">La Team</h2>
+    </div> 
+    <div class="teamList">
+        
+            <div class="team">
+                <img  src="{{ asset('img/clelia.png')}}" alt="Clelia">
+                <p>Clélia</p>
+                <p>Product-Owner</p>
+                <a href="https://www.linkedin.com/in/clelia-c/"><img  src="{{ asset('img/linkedin_rond.png')}}" class="linkedIn" alt=""></a>
+            </div>
+            <div class="team">
+                <img  src="{{ asset('img/vivi.png')}}" alt="Viviane">
+                <p>Viviane</p>
+                <p>Lead-Dev front</p>
+                <a href="https://www.linkedin.com/in/vivianeg/"><img  src="{{ asset('img/linkedin_rond.png')}}" class="linkedIn" alt=""></a>
+            </div>
+            <div class="team" >
+                <img  src="{{ asset('img/samia.png')}}" alt="Samia">
+                <p>Samia</p>
+                <p>Lead-dev back et GitMaster</p>
+                <a href="https://www.linkedin.com/in/samia-bouirou/"><img  src="{{ asset('img/linkedin_rond.png')}}" class="linkedIn" alt=""></a>
+            </div>
+            <div class="team">
+                <img  src="{{ asset('img/celine.png')}}" alt="Celine">
+                <p>Céline</p>
+                <p>Scrum Master</p>
+                <a target="_blank" href="https://www.linkedin.com/in/celine-toulet/"><img class="linkedIn" src="{{ asset('img/linkedin_rond.png')}}" alt="" ></a>
+            </div>
+       
+    </div>
+{% endblock %}

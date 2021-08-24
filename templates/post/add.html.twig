@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+	Ajout d'article
+
+{% endblock %}
+
+{% block content %}
+
+	<div class="title">
+		<h2>Ajout d'article</h2>
+	</div>
+
+	<div class="form_container">
+		{{form_start(formPostAdd,  {'attr': {'novalidate': 'novalidate','class': 'add-post'}}) }}
+
+		<div class="form-post-add">{{ form_widget(formPostAdd.title)}}</div>
+		<div>{{form_widget(formPostAdd.content)}}</div>
+		<div>{{form_widget(formPostAdd.country)}}</div>
+		{# <div>{{form_widget(formPostAdd.continent)}}</div> #}
+        <div>{{form_widget(formPostAdd.picture)}}</div>
+            
+		{{form_end(formPostAdd)}}
+	</div>
+{% endblock %}

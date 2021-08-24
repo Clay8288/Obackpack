@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}
+	{{ title }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="btn7">
+   <img src="{{ asset('img/top.png')}}" class="top">
+    </div>
+    <div class="title">
+        <h2 class="title-post">{{ title }}</h2>
+    </div> 
+    <p class="return">
+		<a href="{{ path('blog_posts') }}">Retour aux articles</a>
+	</p>
+
+    <section>
+        <div class="post">
+            <div class="postleft">
+                <figure class="postpicpost">
+                    <img src="{{ asset('img/'~ post.picture)}}" alt="photo illustrant l'article">
+                </figure>
+            </div>
+            <div class="postright">
+                <h4>{{ title }}</h4>
+                <article class="postbeginning">
+                   {{post.content|nl2br}}
+                </article>
+                <div class="user-post-info">
+                    <p><strong>{{post.user.nickname}} </strong></p> 
+                    <p>Le {{ post.publishedAt|date('d-m-Y') }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section >
+    
+        <p class="textb4form"> Ajouter un commentaire :<br><span class="it">(Vous devez être connecté)</span></p>
+
+           {{ form_start(commentForm) }}
+
+                <div class="centerform">
+                    <div class="commentform">{{ form_row(commentForm.content) }}</div>
+                </div>
+
+                <button type="submit" class="sendcomment">Valider</button>
+
+           {{ form_end(commentForm) }}
+
+        {% for comment in comments %}
+            <div class="post-comment">
+                <div class="commentProfile">
+                    <div class="user-profil">
+                        <img class ="miniAvatar" src="{{ asset('img/'~ comment.user.picture)}}" alt="{{comment.user.nickname}}">
+                    </div> 
+                    <div class ="comment-user-info">
+                        <strong>{{comment.user.nickname}}</strong>  - date : {{ comment.publishedAt|date('d-m-Y') }}
+                    </div> 
+                </div>
+                <div class="fullComment">
+                <p>
+                {{comment.content}}
+                </p>
+                </div>
+            </div> 
+        {% endfor %}
+    </section>
+    <p class="return">
+			<a href="{{ path('blog_posts') }}">Retour aux articles</a>
+		</p>
+{% endblock %}
+

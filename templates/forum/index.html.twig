@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}Forum{% endblock %}
+
+{% block content %}
+
+    <div class="title">
+        <h2>Forum - O'Backpack</h2>
+    </div>
+
+    {% for continent in continents %}
+
+        <h3 class="title-forum">{{continent.name}}</h3>
+
+        <div>
+            <ul>
+            {% for subject in forums %}
+                <li>{{ subject }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+
+    {% endfor %}
+
+
+{% endblock %}

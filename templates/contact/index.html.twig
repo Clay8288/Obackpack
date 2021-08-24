@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}Contactez-nous!{% endblock %}
+
+{% block content %}
+
+	<div class="title">
+<h2>Contactez-nous!</h2>
+    	</div>
+    <div class="formcontainer">
+        
+        {{ form_start(contactform) }}
+                <div class="form-group">
+                    {{ form_widget(contactform.name, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_widget(contactform.email, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_widget(contactform.message, {'attr': {'class': 'form-control message'}}) }}
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Envoyer" class="send7">
+                </div>
+                </div>
+        {{ form_end(contactform) }}
+
+
+
+{% endblock %}

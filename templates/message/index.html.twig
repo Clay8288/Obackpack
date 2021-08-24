@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+  <h1>AFSY - Mercure and Symfony</h1>
+  <div id="mercure-content-receiver"></div>
+  <form id="mercure-message-form" action="{{ path('sendMessage') }}" method="post">
+    <label for="mercure-message-input">Message:</label>
+    <input type="text" id="mercure-message-input" name="message"/>
+    <input type="submit" id="mercure-message-btn" value="Send"/>
+  </form>
+{% endblock %}
+{% block javascripts %}
+  <script type="text/javascript">
+    const _receiver = document.getElementById('mercure-content-receiver');
+    const _messageInput = document.getElementById('mercure-message-input');
+    const _sendForm = document.getElementById('mercure-message-form');
+
+    const sendMessage = (message) => {
+      if (message === '') {
+        return;
+      }
+
+      fetch(_sendForm.action, {
+        method: _sendForm.method,
+        body: 'message=' + message,
+        headers: new Headers({
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        })
+      }).then(() => {
+        _messageInput.value = '';
+      });
+    };
+
+    _sendForm.onsubmit = (evt) => {
+      sendMessage(_messageInput.value);
+
+      evt.preventDefault();
+      return false;
+    };
+
+    const url = new URL('{{ http://localhost:3000/.well-known/mercure }}');
+    url.searchParams.append('topic', 'http://ec2-3-238-91-104.compute-1.amazonaws.com/message');
+    const eventSource = new EventSource(url, { withCredentials: true });
+    eventSource.onmessage = (evt) => {
+      const data = JSON.parse(evt.data);
+      if (!data.message) {
+        return;
+      }
+      _receiver.insertAdjacentHTML('beforeend', `<div class="message">${data.message}</div>`);
+    };
+  </script>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}Un e-mail vient de vous être envoyé{% endblock %}
+
+{% block content %}
+
+    <div class="title">
+	</div>
+
+    <p class="check">
+        Si un compte est bien relié à l'e-mail que vous avez renseigné, alors vous vous recevrez un message dans quelques minutes.
+        Le lien est valable {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+    </p>
+    <p class="check">Si vous ne recevez aucun e-mail, pensez à vérifier vos spams ou <a href="{{ path('app_forgot_password_request') }}">ré-essayez</a>.</p>
+{% endblock %}

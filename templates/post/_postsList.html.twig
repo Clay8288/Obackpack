@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+    
+{% block subtitle %}
+	{#{ title }#}
+{% endblock %}
+
+{% block content %}
+{% for post in posts %}
+	<div class="title">
+		<h2>{{ post.title }}</h2>
+	</div> 
+    <div class="links">
+		<p class="link-post">
+            <a href="{{ path('blog_list') }}">Retour au blog</a>
+        </p>
+		<p class="link-post">
+            <a href="{{ path('main_search') }}">Rechercher</a>
+        </p>
+		<p class="link-post">
+            <a href="{{ path('blog_add') }}">&#43; Ajouter un article</a>
+        </p> 
+    </div>
+    {% for post in posts %}
+        <div class="post">
+            <div class="postleft">
+                <figure class="postpic">
+                {% if post.picture == "NULL" %}
+                   
+                   {% else %}
+                    <img src="{{ asset('img/'~ post.picture)}}" alt="photo illustrant l'article">
+                {% endif %}
+            </div>
+            <div class="postright">
+                <h4>{{ post.title }}</h4>
+                <div class="postbeginning">
+                    <p>{{ post.content|slice(0, 300) }}...</p>
+                    <p>{{ post.user.nickname }} - Le {{ post.publishedAt|date('d-m-Y') }}</p>
+                </div>
+                <div class="continue">
+                    <a href="{{ path('blog_post', {id:post.id}) }}">Lire la suite</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {{ knp_pagination_render(posts) }}
+    <div class="links">
+        {# <button class="post">
+            <a href="#">Voir Plus</a>
+        </button> #}
+        <p class="continue">
+            <a href="{{ path('blog_list') }}">Retour au blog</a>
+        </p>
+        <p class="continue">
+            <a href="{{ path('blog_add') }}">&#43; Ajouter un article</a>
+        </p> 
+    </div>
+{% endfor %}
+{% endblock %}

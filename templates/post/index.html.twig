@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Blog
+{% endblock %}
+
+{% block content %}
+
+	<div class="imageandtitle">
+		<p class="blog"></p>
+		<h2>
+			Blog
+		</h2>
+	</div>
+
+	<div class="links">
+		<p class="link-post">
+			<a href="">Recherche</a>
+		</p>
+		<p class="link-post">
+			<a href="{{ path('blog_add') }}">
+				&#43; Ajouter un article</a>
+		</p>
+	</div>
+
+
+	<section class="all-posts">
+
+	<div class="title-galery">
+		<a class="ah2" href="{{ path('blog_posts') }}">Tous les articles</a>
+	</div>
+	<div class="post">
+
+		<div class="postleft">
+			<figure class="postpic">
+				<img src="{{ asset('img/'~ posts|last.picture)}}" alt="photo illustrant l'article">
+			</figure>
+		</div>
+		<div class="postright">
+			<h4>{{ posts|last.title }}</h4>
+			<div class="postbeginning">
+				<p>{{ posts|last.content|slice(0, 300) }}...</p>
+				<p>{{ posts|last.user.nickname }}
+					- Le
+					{{ posts|last.publishedAt|date('d-m-Y') }}</p>
+			</div>
+			<div class="continue">
+				<a href="{{ path('blog_post', {id:posts|last.id}) }}">Lire la suite</a>
+			</div>
+		</div>
+	</div>
+
+	</section>
+
+	<section class="all-pics">
+
+	<div class="title-galery">
+			<a class="ah2" href="{{ path('blog_gallery') }}">Galerie photo</a>
+	</div>
+
+	<div class="blog-carousel">
+
+		<div class="carousel-inner">
+			<img class="active2 item" src="{{ asset('img/0015.jpg')}}" alt="Picture1">
+			<img class="item" src="{{ asset('img/0013.jpg')}}" alt="Picture2">
+			<img class="item" src="{{ asset('img/0012.jpg')}}" alt="Picture3">
+			<img class="item" src="{{ asset('img/0017.jpg')}}" alt="Picture4">
+		</div>
+		<div class="arrows">
+			<div class="arrow precedent">
+				&lt;
+			</div>
+			<div class="arrow suivant">
+				&gt;
+			</div>
+		</div>
+	</div>
+	</section>
+
+{% endblock %}

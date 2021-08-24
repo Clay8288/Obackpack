@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}Accès protégé - 403{% endblock %}
+
+{% block content %}
+    <div class="title">
+    <div class="imageandtitle-error">
+       
+        <h2>ZONE 403</h2>
+    </div>
+        </div> 
+
+    <div>
+        <p>
+           Vous devez rebrousser chemin...
+        </p>
+        <p>
+            <img class="construction" src="{{ asset('img/403.jpg')}}" alt="error">
+        </p>
+        <p>
+            Les supers nanas vous proposent de retourner à  <a href="{{path('main_home')}}">l'accueil</a>
+        </p>
+    </div>
+
+{% endblock %}

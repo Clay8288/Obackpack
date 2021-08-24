@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Galerie {{continent.name}}
+{% endblock %}
+
+{% block content %}
+
+	<div class="title">
+		<h2>
+			{{continent.name}}
+		</h2>
+	</div>
+
+	<p class="return">
+		<a href="{{ path('blog_gallery') }}">Retour à la galerie</a>
+	</p>
+
+	<section class="uniq continentpictures">
+		<div class="continentname">
+			
+		</div>
+		<div class="continent">
+			<img class="item" src="{{ asset('img/023.jpg')}}" alt="Picture1">
+			<img class="item" src="{{ asset('img/0014.jpg')}}" alt="Picture2">
+			<img class="item" src="{{ asset('img/0010.jpg')}}" alt="Picture3">
+			<img class="item" src="{{ asset('img/0012.jpg')}}" alt="Picture4">
+			<img class="item" src="{{ asset('img/0021.jpg')}}" alt="Picture5">
+			<img class="item" src="{{ asset('img/0022.jpg')}}" alt="Picture6">
+			<img class="item" src="{{ asset('img/0001.jpg')}}" alt="Picture7">
+			<img class="item" src="{{ asset('img/0024.jpg')}}" alt="Picture8">							
+			<img class="item" src="{{ asset('img/0014.jpg')}}" alt="Picture9">
+		</div>
+	</section>
+{% endblock %}

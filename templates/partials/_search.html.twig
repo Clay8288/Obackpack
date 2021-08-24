@@ -1,0 +1,7 @@
+<ul>
+	{% for continent in continents %}
+		<li>
+			<a href="{{ path('location_continent', {id:continent.id}) }}">{{ continent.name }}</a>
+		</li>
+	{% endfor %}
+</ul>

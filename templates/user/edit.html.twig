@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}Modifiez votre mot de passe{% endblock %}
+
+{% block content %}
+
+    <div class="title">
+        <h2>Modifiez votre mot de passe</h2>
+    </div>
+    <p class="return">
+		<a href="{{ path('user_profile', {id:user.id}) }}">Retour</a>
+	</p>
+    <div class="formwrapper">
+
+        {{ form_start(form) }}
+            
+            <div class="col">
+                <div class="formgroup">{{ form_row(form.password, {
+                label: 'Mot de passe actuel'
+            }) }}</div>
+            </div><br>
+            <div class="col">
+                <div class="formgroup">{{ form_row(form.new_password, {
+                label: 'Nouveau mot de passe'
+            }) }}</div>
+            </div>
+
+            <button type="submit" class="buttonform">Modifier</button>
+    
+        {{ form_end(form) }}
+
+    </div>
+
+ {% endblock %}

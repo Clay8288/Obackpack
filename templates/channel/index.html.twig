@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}  
+  
+{% block title %}Channel{% endblock %}  
+  
+{% block content %}  
+  
+<div class="channel-container">  
+	<div class="title">
+		<h2>Channel</h2>
+	</div>
+    {% if app.user %}  
+        <div class="welcome">  
+            <p>Bienvenue {{ app.user.firstname }}, <a href="{{ path('app_logout') }}">Logout</a>  </p>
+        </div>  
+    {% endif %}  
+    {% if channels %}  
+        <h3>Quel channel souhaitez-vous rejoindre?</h3>  
+        <table class="">  
+            <tbody>  
+            {% for channel in channels %}  
+                <tr class="">  
+                    <th class="choose-channel">  
+                        <span>{{ channel.name }}</span>  
+                        <a class="" href="{{ path('chat', {id: channel.id}) }}">Aller sur le chat !</a>  
+                    </th>  
+                </tr>  
+            {% endfor %}  
+            </tbody>  
+        </table>  
+    {% else %}
+        <div>
+            <div class="alert alert-danger text-center">Pas de channel trouvé.</div>
+        </div>
+    {% endif %}
+</div>  
+{% endblock %}

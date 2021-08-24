@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}Votre espace{% endblock %}
+
+{% block content %}
+
+    <div class="title">
+
+    <h5>Bienvenue dans votre compte, {{ user.nickname }}</h5>
+
+    {% if is_granted('ROLE_ADMIN') %}
+
+        <a href="{{ path('admin') }}"> Aller vers le Dashboard </a> <br>
+
+    {% endif %}
+    </div>
+    <div class="space">
+        <h5>- Vos informations -</h5>
+    </div>
+
+            <div class="profiletable">
+
+            <div class="avatarprofile">
+                <img src="{{ asset('img/'~ user.picture)}}" alt="photo de profil">
+            </div>
+
+            <img src="{{ asset('img/icon/backpack.png')}}" altr="" class="backpack">
+                <div class="listData">
+                    <p><b>Nom :</b> {{ user.lastname }}</p>
+                    <p><b>Prénom :</b> {{ user.firstname }}</p>
+                    <p><b>E-mail :</b> {{ user.email }}</p>
+                    <p><b>Date de naissance :</b> {{ user.dateOfBirth|date('d/m/Y') }}</p>
+                    <p><b>Pays :</b> {{ user.country }}</p>
+                    
+                </div>
+            </div>
+
+        <p class="linkData2"><a href ="{{ path('user_map', {id:user.id}) }}" class="linkData2">Vos itinéraires</a></p>
+
+        <p class="linkData2"><a href="{{ path('user_update', {id:user.id}) }}" class="linkData2">Modifiez vos données</a></p>
+
+
+        <p class="linkData2"><a href="{{ path('user_edit', {id:user.id}) }}" class="linkData2">Modifiez votre mot de passe</a></p>
+
+   
+
+{% endblock %}

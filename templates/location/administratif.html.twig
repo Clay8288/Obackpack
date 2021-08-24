@@ -1,0 +1,106 @@
+{% extends "base.html.twig" %}
+
+{% block subtitle %}
+	Informations
+{% endblock %}
+
+{% block content %}
+	<div class="imageandtitle">
+		<img src="{{ picture.results.3.urls.raw }}&w=1600&dpr=2" alt="image monde" class="continentspec">
+		<h2>{{name}}</h2>
+	</div>
+
+	<div class="links">
+		<p class="link-post">
+			<a href="{{ path('location_country_weather', {name}) }}">Météo</a>
+		</p>
+		<p class="link-post">
+		<a href="{{ path('location_continent') }}">Retour à la liste des continents</a>
+		</p>
+	</div>
+	<div class= "adminCountry" >
+		<div class="adminCountry_flag">
+			<img class="flag" src="{{detailCountry.0.flag}}" alt="{{detailCountry.0.name}}"> 
+		</div>
+		<div class = "adminCountry_info" >
+			<div>
+				Region : {{detailCountry.0.region}}
+			</div>
+			<div>
+				Capital : {{detailCountry.0.capital}}
+			</div>
+			<div>
+				Langue :
+				{% for languages in detailCountry.0.languages %}
+					
+					{{languages["nativeName"]}},
+				{% endfor %}
+				
+			</div>
+			<div>
+				Devise :
+				{% for currencies in detailCountry.0.currencies %}
+				{% if currencies.name is defined and currencies.name is not null  %}
+
+				{{currencies.name}}	
+				{% else %}
+				<p></p>
+				{% endif %}
+				{% if currencies.symbol is defined and currencies.symbol is not null  %}
+
+				{{currencies.symbol}}	
+				{% else %}
+				<p></p>
+				{% endif %}
+				{% if currencies.code is defined and currencies.code is not null  %}
+
+				{{currencies.code}}	
+				{% else %}
+				<p></p>
+				{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+		
+	</div>
+	
+	<div class="administratif post" id="administratif">
+		<h4 class="admin-title">Administratif :</h4>
+			<ul class="listAdmin" >
+				<li>
+				{% if countryInfo.0.visa is defined and countryInfo.0.visa is not null %}
+				Visa : {{ countryInfo.0.visa == "1" ? "Oui" : "Non" }}
+				{% else %}
+				{% endif %}
+				</li>
+				<li>
+				{% if countryInfo.0.vaccine is defined and countryInfo.0.vaccine is not null %}
+					Vaccin : {{ countryInfo.0.vaccine }}
+					{% else %}
+				{% endif %}
+				</li>
+				<li><a target="_blank" href="https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/conseils-par-pays-destination/{{ name }}/#entree">
+				Pour plus d'informations
+				</a></li>
+			</ul>
+	</div>
+	<div class="evenements post" id="evenements">
+		<h4 class="events-title">Evenements :</h4>
+		{% if countryInfo.0.events  is defined and countryInfo.0.events  is not null %}
+		<p class="event">{{ countryInfo.0.events }}</p>
+		{#<p><a href="https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/conseils-par-pays-destination/{{ name }}/#entree">
+		Voir le calendrier
+		</a></p>#}
+			{% else %}
+				{% endif %}
+	</div>
+	<div class="stuffs-list post">
+		<h4 class="events-title">Matériel nécessaire : </h4>
+			<ul>
+				<li>Tente</li>
+				<li>Parapluie</li>
+				<li>Lampe torche</li>
+				<li>Batterie de secours pour téléphone portable</li>
+			</ul>
+	</div>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}Bienvenue!{% endblock %}
+
+{% block content %}
+
+{# <div class="welcome"> #}
+
+    <div class="img-slider">
+      <div class="slide active">
+        <img src="{{ asset('img/slide-main/0003.jpg')}}" alt="photo" class="carousel">
+        <div class="info">
+          <h6>o'backpack</h6>
+          <p>Un site dédié pour les backpacker afin d'y regrouper toutes les informations utlies</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="{{ asset('img/slide-main/0016.jpg')}}" alt="photo" class="carousel">
+        <div class="info">
+          <h6>Clélia</h6>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="{{ asset('img/slide-main/0025.jpg')}}" alt="photo" class="carousel">
+        <div class="info">
+          <h6>Céline</h6>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="{{ asset('img/slide-main/adventure.jpg')}}" alt="photo" class="carousel">
+        <div class="info">
+          <h6>Samia</h6>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="{{ asset('img/slide-main/sl02.jpg')}}" alt="photo" class="carousel">
+        <div class="info">
+          <h6>Viviane</h6>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+      </div>
+      <div class="navigation">
+        <div class="btn active"></div>
+        <div class="btn"></div>
+        <div class="btn"></div>
+        <div class="btn"></div>
+        <div class="btn"></div>
+      </div>
+    </div>
+
+    <div class="main-title">
+        <h2>Bienvenue</h2>
+    </div>
+<div class="all">
+  <div class="presentation">
+      <div id="QuoteOFDay"></div>
+  </div>
+
+<div class="posts">
+  <h3>Nos trois derniers articles</h3>
+{% for post in posts  %}
+    <section class="post">
+          <div class="postleft">
+          <figure class="postpic">
+              <img src="{{ asset('img/'~ post.picture)}}" alt="photo illustrant l'article">
+          </figure>
+      </div>
+      <div class="postright">
+          <h4>{{ post.title }}</h4>
+          <div class="postbeginning">
+              <p>{{ post.content|slice(0, 300) }}...</p>
+              <p>{{ post.user.nickname }} - Le {{ post.createdAt|date('d-m-Y') }}</p>
+          </div>
+          <div class="continue">
+            <a href="{{ path('blog_post', {id:post.id}) }}">Lire la suite</a>
+        </div>
+      </div>
+    
+    </section>
+{% endfor %}
+    </div> 
+</div>
+{% endblock %}

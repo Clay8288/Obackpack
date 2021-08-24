@@ -1,0 +1,22 @@
+{% block subject 'Mot de passe oublié - O\'Backpack' %}
+
+{% block body_html %}
+
+<img src="http://ec2-3-237-178-199.compute-1.amazonaws.com/img/oglobe.png">
+<h1>Salut!</h1>
+
+{% endblock %}
+
+{% block body_text %}
+
+<p>Pour réinitialiser votre mot de passe, cliquez sur le lien suivant svp :</p>
+
+<a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
+
+<p>Ce lien est valable pendant {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+
+<p>À bientôt sur la route!</p>
+
+{% endblock %}
+
+

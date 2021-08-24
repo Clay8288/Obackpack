@@ -1,0 +1,30 @@
+<header>
+
+    <div class="header">
+	    <a href="{{ path('main_home') }}"><img src="{{ asset('img/oglobe.png')}}" alt="logo o'backpack" id="logomenu"></a>
+    </div>
+
+    <nav id="menu">
+        <div class="nav">
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="{{ path('location_continent') }}" class="nav-link">Destinations</a></li>
+                <li class="nav-item"><a href="{{ path('blog_list') }}" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="{{ path('main_construction') }}" class="nav-link">Annonces</a></li>
+                <li class="nav-item"><a href="{{ path('main_search') }}" class="nav-link">Recherche</a></li>
+                  {% if app.user %}
+                    <li class="nav-item"><a href="{{ path('channel') }}" class="nav-link">Channel</a></li>
+                    <li class="nav-item"><a href="{{ path('user_profile', {id:app.user.id}) }}" class="nav-link">Mon compte</a></li>
+                    <li class="nav-item"><a href="{{ path('app_logout') }}" class="nav-link">Me déconnecter</a></li>
+                  {% else %}
+                    <li class="nav-item"><a href="{{ path('app_login') }}" class="nav-link">Se connecter / S'enregistrer</a></li>
+                  {% endif %}
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+	
+</header>

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block subtitle %}
+	Recherche
+{% endblock %}
+
+{% block content %}
+	<section class="search_form">
+		<div class="formwrapper2">
+			<div class="col">
+				<div class="formgroup">
+					<form action="" method="GET">
+						<input name="search" type="text" onfocus="this.placeholder=''" placeholder="Tapez votre recherche" pattern="[A-Za-z]{3,}" required><br>
+						<button type="submit" class="buttonform2">
+							Rechercher
+						</button>
+					</form>
+				</div>
+			</div>
+		<div>
+	</section>
+
+{% endblock %}
