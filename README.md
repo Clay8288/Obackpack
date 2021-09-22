@@ -1,7 +1,33 @@
 # Welcome on board
 
-O'backpack est un projet permettant aux voyageurs façon routard de trouver des infos utiles sur leurs futures destinations, mais aussi et pourquoi pas des bons plans et/ou d'autres compagnons de routes...
+## Table of Contents
+- [Promenade Sucree](#promenade-sucree)
+  - [Table of Contents](#table-of-contents)
+    - [General Info](#general-info)
+    - [Screenshot](#screenshot)
+  - [Technologies](#technologies)
+  - [Project status](#project-status)
+  
+### General Info
+***
+
+O'backpack est un projet permettant aux personnes voyageant en sac à dos de trouver des infos utiles sur leurs futures destinations, mais aussi et pourquoi pas des bons plans et/ou d'autres compagnons de routes...
 
 Un projet réalisé par par Céline, Clélia, Viviane et Samia.
 
+### Screenshot
+![Image text](public/img/oglobe.png)
+
+## Technologies
+***
+Main technologies and libraries
+* [Symfony](https://symfony.com/): Version 5.3 
+* [Mercure](https://mercure.rocks/)
+  
+
+## Project status
+
+The project is currently on hold.
+
+## Roadmap (MVP)
 
