@@ -69,7 +69,7 @@ class PackageJsonSynchronizer
 
         foreach (['dependencies' => $jsDependencies, 'devDependencies' => $jsDevDependencies] as $key => $packages) {
             foreach ($packages as $name => $version) {
-                if ('@' !== $name[0] || 0 !== strpos($version, 'file:')) {
+                if ('@' !== $name[0] || 0 !== strpos($version, 'file:') || false === strpos($version, '/assets')) {
                     continue;
                 }
 
@@ -207,7 +207,7 @@ class PackageJsonSynchronizer
             return null;
         }
 
-        foreach (['/assets', '/Resources/assets'] as $subdir) {
+        foreach (['/assets', '/Resources/assets', '/src/Resources/assets'] as $subdir) {
             $packageJsonPath = $packageDir.$subdir.'/package.json';
 
             if (!file_exists($packageJsonPath)) {
