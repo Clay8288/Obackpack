@@ -28,6 +28,6 @@ Main technologies and libraries
 ## Project status
 
 The project is currently on hold.
+For view the project go to take a look on the presentation on [Youtube](https://www.youtube.com/watch?v=1qlGlKTmlxk&t=2632s)
 
-## Roadmap (MVP)
 
